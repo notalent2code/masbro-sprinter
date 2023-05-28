@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 direction;
     private int desiredLane = 1; // 0: Left, 1: Middle, 2: Right
     public float forwardSpeed = 2;
+    public float maxSpeed = 15;
     public float laneDistance = 4; // The distance between two lanes
     public float jumpForce = 10;
     public float gravity = -20;
@@ -23,6 +24,11 @@ public class PlayerController : MonoBehaviour
         if (!PlayerManager.isGameStarted)
         {
             return;
+        }
+
+        if (forwardSpeed < maxSpeed)
+        {
+            forwardSpeed += 0.1f * Time.deltaTime;
         }
 
         direction.z = forwardSpeed;
@@ -74,6 +80,8 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+
+        // Calculate the move delta
         Vector3 diff = targetPosition - transform.position;
         Vector3 moveDir = diff.normalized * 25 * Time.deltaTime;
         if (moveDir.sqrMagnitude < diff.sqrMagnitude)
