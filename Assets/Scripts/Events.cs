@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Events : MonoBehaviour
 {
     public GameObject mainMenuPanel;
-    public void ReplayGame()
+    public void RestartGame()
     {
         SceneManager.LoadScene("Level");
     }
@@ -16,10 +16,9 @@ public class Events : MonoBehaviour
         Application.Quit();
     }
 
-    public void StartGame()
+    public void StartButton()
     {
-        PlayerManager.isGameStarted = true;
-        PlayerManager.isGameOver = false;
+        PlayerManager.isInMainMenu = false;
         mainMenuPanel.SetActive(false);
     }
 
