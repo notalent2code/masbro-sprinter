@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float laneDistance = 4; // The distance between two lanes
     public float jumpForce = 10;
     public float gravity = -20;
+    public Animator animator;
 
     void Start()
     {
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+
+        animator.SetBool("isGameStarted", true);
 
         if (forwardSpeed < maxSpeed)
         {
