@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
         direction.z = forwardSpeed;
         direction.y += gravity * Time.deltaTime;
 
+        animator.SetBool("isGrounded", controller.isGrounded);
+
         if (controller.isGrounded)
         {
             if (SwipeManager.swipeUp)
@@ -47,6 +49,11 @@ public class PlayerController : MonoBehaviour
         else
         {
             direction.y += gravity * Time.deltaTime;
+        }
+
+        if (SwipeManager.swipeDown)
+        {
+            StartCoroutine(Slide());
         }
 
         if (SwipeManager.swipeRight)
@@ -121,5 +128,20 @@ public class PlayerController : MonoBehaviour
         {
             PlayerManager.isGameOver = true;
         }
+    }
+
+    private IEnumerator Slide()
+    {
+        animator.SetBool("isSliding", true);
+        controller.center = new Vector3(0, 0.5f, 0);
+        controller.height = 1;
+        animator.transform.position = new Vector3(animator.transform.position.x, animator.transform.position.y - 0.8f, animator.transform.position.z);
+
+        yield return new WaitForSeconds(0.5f);
+
+        animator.SetBool("isSliding", false);
+        controller.center = new Vector3(0, 1, 0);
+        controller.height = 2;
+        animator.transform.position = new Vector3(animator.transform.position.x, animator.transform.position.y + 0.8f, animator.transform.position.z);   
     }
 }
