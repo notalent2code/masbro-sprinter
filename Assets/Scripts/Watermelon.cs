@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Watermelon : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -16,12 +16,13 @@ public class Coin : MonoBehaviour
         transform.Rotate(0, 100 * Time.deltaTime, 0);
     }
 
-    private void onTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.tag == "Player")
         {
-            PlayerManager.coins++;
-            Destroy(gameObject);
+            PlayerManager.totalScore += 1;
+            Debug.Log("Score: " + PlayerManager.totalScore);
+            Destroy(this.gameObject);
         }
     }
 }

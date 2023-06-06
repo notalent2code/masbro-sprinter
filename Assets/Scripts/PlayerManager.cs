@@ -10,11 +10,11 @@ public class PlayerManager : MonoBehaviour
     public static bool isInMainMenu;
     public static bool isGameStarted;
     public static bool isGameOver;
-    public static int coins;
+    public static int totalScore;
 
     void Start()
     {
-        coins = 0;
+        totalScore = 0;
         isInMainMenu = true;
         isGameStarted = false;
         isGameOver = false;
