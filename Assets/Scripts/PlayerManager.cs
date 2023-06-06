@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     public static bool isGameStarted;
     public static bool isGameOver;
     public static int totalScore;
+    public TextMeshProUGUI scoreText;
 
     void Start()
     {
@@ -34,10 +36,25 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
+        if (isGameStarted)
+        {
+            scoreText.gameObject.SetActive(true);
+            scoreText.text = "Score: " + totalScore.ToString();
+        }
+        else
+        {
+            scoreText.gameObject.SetActive(false);
+        }
+
         if (isGameOver)
         {
             Time.timeScale = 0;
             gameOverPanel.SetActive(true);
+            // Set scoreText position to the middle of the screen
+            RectTransform scoreRectTransform = scoreText.GetComponent<RectTransform>();
+            scoreRectTransform.anchorMin = new Vector2(0.52f, 0.67f);
+            scoreRectTransform.anchorMax = new Vector2(0.52f, 0.67f);
+            scoreRectTransform.anchoredPosition = Vector2.zero;
         }
 
     }
