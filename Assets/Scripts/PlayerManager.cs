@@ -52,10 +52,9 @@ public class PlayerManager : MonoBehaviour
             gameOverPanel.SetActive(true);
             // Set scoreText position to the middle of the screen
             RectTransform scoreRectTransform = scoreText.GetComponent<RectTransform>();
-            scoreRectTransform.anchorMin = new Vector2(0.52f, 0.67f);
-            scoreRectTransform.anchorMax = new Vector2(0.52f, 0.67f);
+            scoreRectTransform.anchorMin = new Vector2(0.58f, 0.67f);
+            scoreRectTransform.anchorMax = new Vector2(0.58f, 0.67f);
             scoreRectTransform.anchoredPosition = Vector2.zero;
         }
-
     }
 }

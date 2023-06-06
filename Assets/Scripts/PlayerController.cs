@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
     {
         if (controller.isGrounded)
         {
+            animator.SetBool("isGrounded", false);
             direction.y = jumpForce;
         }
     }
@@ -127,6 +128,8 @@ public class PlayerController : MonoBehaviour
         if (hit.transform.tag == "Obstacle")
         {
             PlayerManager.isGameOver = true;
+            FindObjectOfType<AudioManager>().PlaySound("GameOver");
+            FindObjectOfType<AudioManager>().StopSound("MainTheme");
         }
     }
 
@@ -142,6 +145,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isSliding", false);
         controller.center = new Vector3(0, 1, 0);
         controller.height = 2;
-        animator.transform.position = new Vector3(animator.transform.position.x, animator.transform.position.y + 0.8f, animator.transform.position.z);   
+        animator.transform.position = new Vector3(animator.transform.position.x, animator.transform.position.y + 0.8f, animator.transform.position.z);
     }
 }

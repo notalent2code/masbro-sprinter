@@ -7,6 +7,8 @@ public class Events : MonoBehaviour
 {
     public GameObject mainMenuPanel;
     public GameObject gameOverPanel;
+    public GameObject settingPanel;
+    public FunfactPopup funfactPopup;
 
     public void RestartGame()
     {
@@ -28,12 +30,21 @@ public class Events : MonoBehaviour
 
     public void MainMenuButton()
     {
-        PlayerManager.isInMainMenu = true;
-        PlayerManager.isGameStarted = false;
-        PlayerManager.isGameOver = false;
-        gameOverPanel.SetActive(false);
-        mainMenuPanel.SetActive(true);
         RestartGame();
     }
 
+    public void FunfactButton()
+    {
+        funfactPopup.ShowRandomFunfact();
+    }
+
+    public void SettingButton()
+    {
+        settingPanel.SetActive(true);
+    }
+
+    public void BackButton()
+    {
+        settingPanel.SetActive(false);
+    }
 }

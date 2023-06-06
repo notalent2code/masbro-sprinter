@@ -21,7 +21,7 @@ public class Watermelon : MonoBehaviour
         if (other.tag == "Player")
         {
             PlayerManager.totalScore += 1;
-            Debug.Log("Score: " + PlayerManager.totalScore);
+            FindObjectOfType<AudioManager>().PlaySound("PickWatermelon");
             Destroy(this.gameObject);
         }
     }
