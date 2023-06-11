@@ -38,7 +38,22 @@ public class TileManager : MonoBehaviour
 
     public void SpawnTile(int tileIndex)
     {
-        GameObject go = Instantiate(tilePrefabs[tileIndex], transform.forward * zSpawn, transform.rotation);
+        GameObject tilePrefab = tilePrefabs[tileIndex];
+
+        // Check if the tilePrefab already exists in activeTiles
+        if (activeTiles.Exists(tile => tile == tilePrefab))
+        {
+            // Choose another tile that is not in activeTiles
+            int newIndex = Random.Range(0, tilePrefabs.Length);
+            while (newIndex == tileIndex || activeTiles.Exists(tile => tile == tilePrefabs[newIndex]))
+            {
+                newIndex = Random.Range(0, tilePrefabs.Length);
+            }
+            tileIndex = newIndex;
+            tilePrefab = tilePrefabs[tileIndex];
+        }
+
+        GameObject go = Instantiate(tilePrefab, transform.forward * zSpawn, transform.rotation);
         activeTiles.Add(go);
         zSpawn += tileLength;
     }
